@@ -1,0 +1,30 @@
+root = true
+
+# Frozen companion to EnterpriseStudy.ruleset
+# Package: SonarAnalyzer.CSharp 10.35.0.4138
+
+[*.cs]
+dotnet_analyzer_diagnostic.category-Style.severity = none
+dotnet_analyzer_diagnostic.category-Security.severity = none
+
+# Scored smells (must stay Warning for counting)
+dotnet_diagnostic.S1067.severity = warning
+dotnet_diagnostic.S107.severity = warning
+dotnet_diagnostic.S110.severity = warning
+dotnet_diagnostic.S1192.severity = warning
+dotnet_diagnostic.S134.severity = warning
+dotnet_diagnostic.S138.severity = warning
+dotnet_diagnostic.S1541.severity = warning
+dotnet_diagnostic.S1821.severity = warning
+dotnet_diagnostic.S1854.severity = warning
+dotnet_diagnostic.S3776.severity = warning
+dotnet_diagnostic.S4017.severity = warning
+dotnet_diagnostic.S4144.severity = warning
+dotnet_diagnostic.S1155.severity = warning
+dotnet_diagnostic.S1481.severity = warning
+dotnet_diagnostic.S1643.severity = warning
+dotnet_diagnostic.S2933.severity = warning
+dotnet_diagnostic.S3237.severity = warning
+dotnet_diagnostic.S3928.severity = warning
+dotnet_diagnostic.S907.severity = warning
+dotnet_diagnostic.S4055.severity = none

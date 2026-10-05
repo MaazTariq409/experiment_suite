@@ -1,0 +1,2 @@
+HIDDEN EVALUATION SUITE — not distributed to participants.
+Tests bind only to frozen Contracts and instantiate the participant service via DI-style construction.

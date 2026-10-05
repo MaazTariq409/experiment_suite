@@ -1,0 +1,85 @@
+// REFERENCE ONLY — not distributed to participants.
+using Enterprise.Shared.Results;
+using Enterprise.Shared.Time;
+using TP01A.Contracts;
+
+namespace TP01A.Reference;
+
+public sealed class MaintenanceRecordServiceReference : IMaintenanceRecordService
+{
+    private static readonly HashSet<string> Allowed = new(StringComparer.OrdinalIgnoreCase)
+    { "Draft", "Scheduled", "InProgress", "Closed" };
+
+    private readonly IMaintenanceRecordRepository _repository;
+    private readonly IClock _clock;
+
+    public MaintenanceRecordServiceReference(IMaintenanceRecordRepository repository, IClock clock)
+    {
+        _repository = repository;
+        _clock = clock;
+    }
+
+    public async Task<OperationResult<MaintenanceRecordResponse>> CreateAsync(MaintenanceRecordCreateRequest request, CancellationToken cancellationToken = default)
+    {
+        var validation = Validate(request.Title, request.EstimatedCost, request.Status, request.Code);
+        if (validation is not null) return validation;
+
+        if (await _repository.CodeExistsAsync(request.Code, cancellationToken))
+            return OperationResult<MaintenanceRecordResponse>.Fail("DUPLICATE_CODE", "Code already exists.", 409);
+
+        var entity = new MaintenanceRecordResponse
+        {
+            Id = Guid.NewGuid(),
+            Code = request.Code.Trim(),
+            Title = request.Title.Trim(),
+            ScheduledDate = request.ScheduledDate,
+            EstimatedCost = request.EstimatedCost,
+            Status = request.Status,
+            CreatedAtUtc = _clock.UtcNow
+        };
+        await _repository.AddAsync(entity, cancellationToken);
+        return OperationResult<MaintenanceRecordResponse>.Ok(entity, 201);
+    }
+
+    public async Task<OperationResult<MaintenanceRecordResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var entity = await _repository.GetByIdAsync(id, cancellationToken);
+        return entity is null
+            ? OperationResult<MaintenanceRecordResponse>.Fail("NOT_FOUND", "Record not found.", 404)
+            : OperationResult<MaintenanceRecordResponse>.Ok(entity);
+    }
+
+    public async Task<OperationResult<MaintenanceRecordResponse>> UpdateAsync(Guid id, MaintenanceRecordUpdateRequest request, CancellationToken cancellationToken = default)
+    {
+        var existing = await _repository.GetByIdAsync(id, cancellationToken);
+        if (existing is null)
+            return OperationResult<MaintenanceRecordResponse>.Fail("NOT_FOUND", "Record not found.", 404);
+
+        if (string.Equals(existing.Status, "Closed", StringComparison.OrdinalIgnoreCase))
+            return OperationResult<MaintenanceRecordResponse>.Fail("INVALID_STATE", "Closed records cannot be updated.", 409);
+
+        var validation = Validate(request.Title, request.EstimatedCost, request.Status, code: null);
+        if (validation is not null) return validation;
+
+        existing.Title = request.Title.Trim();
+        existing.ScheduledDate = request.ScheduledDate;
+        existing.EstimatedCost = request.EstimatedCost;
+        existing.Status = request.Status;
+        existing.UpdatedAtUtc = _clock.UtcNow;
+        await _repository.UpdateAsync(existing, cancellationToken);
+        return OperationResult<MaintenanceRecordResponse>.Ok(existing);
+    }
+
+    private static OperationResult<MaintenanceRecordResponse>? Validate(string title, decimal cost, string status, string? code)
+    {
+        if (code is not null && string.IsNullOrWhiteSpace(code))
+            return OperationResult<MaintenanceRecordResponse>.Fail("VALIDATION_ERROR", "Code is required.", 400);
+        if (string.IsNullOrWhiteSpace(title))
+            return OperationResult<MaintenanceRecordResponse>.Fail("VALIDATION_ERROR", "Title is required.", 400);
+        if (cost < 0)
+            return OperationResult<MaintenanceRecordResponse>.Fail("VALIDATION_ERROR", "Cost must be >= 0.", 400);
+        if (!Allowed.Contains(status))
+            return OperationResult<MaintenanceRecordResponse>.Fail("VALIDATION_ERROR", "Invalid status.", 400);
+        return null;
+    }
+}

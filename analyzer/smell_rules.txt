@@ -1,0 +1,33 @@
+# Scored code-smell rule IDs (SonarAnalyzer.CSharp 10.35.0.4138)
+
+Only diagnostics from this list contribute to the experimental `code_smells` outcome.
+Each Warning (or higher) occurrence in Participant-authored `.cs` files counts as one smell.
+
+S1067  Expressions should not be too complex
+S107   Methods should not have too many parameters
+S110   Inheritance tree should not be too deep
+S1192  String literals should not be duplicated
+S134   Control flow statements should not be nested too deeply
+S138   Functions should not have too many lines of code
+S1541  Methods and properties should not be too complex
+S1821  Switches should not be nested
+S1854  Unused assignments should be removed
+S3776  Cognitive Complexity of methods should not be too high
+S4017  Method signatures should not contain nested generic types
+S4144  Methods should not have identical implementations
+S1155  Any() should be used to test for emptiness
+S1481  Unused local variables should be removed
+S1643  Strings should not be concatenated using '+' in a loop
+S2933  Fields that are only assigned in the constructor should be readonly
+S3237  "value" parameters unused
+S3928  ArgumentException parameter names
+S907   "goto" statement should not be used
+
+# Excluded from scoring:
+# S4055 localization literals — too noisy for fixed ErrorMessage strings in this study
+
+Counting rule:
+- Analyzer runs on Participant project compile
+- Scope = files under Participant/**/*.cs (exclude obj/bin)
+- code_smells = count of diagnostics whose Id ∈ this list
+- Identical rule fired on multiple lines counts multiple times (instance count, not unique rule count)

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>TP07A.Participant</RootNamespace>
+    <AssemblyName>TP07A.Participant</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\TP07A.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Enterprise.Shared\Enterprise.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

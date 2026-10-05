@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Frozen ruleset for the enterprise .NET AI-assistance experiment.
+  Tool: SonarAnalyzer.CSharp 10.35.0.4138
+  Scope: Participant-authored implementation projects only.
+-->
+<RuleSet Name="EnterpriseStudyCodeSmells" Description="Frozen smell-oriented Sonar C# rules for experimental scoring" ToolsVersion="17.0">
+  <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
+    <!-- Default: disable all, then enable the scored smell subset -->
+    <Rule Id="S100" Action="None" />
+
+    <!-- Scored code-smell subset (Warning = counted smell) -->
+    <Rule Id="S1067" Action="Warning" /> <!-- Expressions should not be too complex -->
+    <Rule Id="S107" Action="Warning" />  <!-- Methods should not have too many parameters -->
+    <Rule Id="S110" Action="Warning" />  <!-- Inheritance tree too deep -->
+    <Rule Id="S1192" Action="Warning" /> <!-- String literals should not be duplicated -->
+    <Rule Id="S134" Action="Warning" />  <!-- Control flow statements should not be nested too deeply -->
+    <Rule Id="S138" Action="Warning" />  <!-- Functions should not have too many lines of code -->
+    <Rule Id="S1541" Action="Warning" /> <!-- Methods and properties should not be too complex (CC) -->
+    <Rule Id="S1821" Action="Warning" /> <!-- Switch should not nest switches -->
+    <Rule Id="S1854" Action="Warning" /> <!-- Unused assignments should be removed -->
+    <Rule Id="S3776" Action="Warning" /> <!-- Cognitive Complexity of methods should not be too high -->
+    <Rule Id="S4017" Action="Warning" /> <!-- Method signatures should not contain nested generic types -->
+    <Rule Id="S4144" Action="Warning" /> <!-- Methods should not have identical implementations -->
+    <Rule Id="S1155" Action="Warning" /> <!-- Any() preferred over Count() == 0 etc. -->
+    <Rule Id="S1481" Action="Warning" /> <!-- Unused local variables should be removed -->
+    <Rule Id="S1643" Action="Warning" /> <!-- Strings should not be concatenated in loops -->
+    <Rule Id="S2933" Action="Warning" /> <!-- Fields that are only assigned in constructor should be readonly -->
+    <Rule Id="S3237" Action="Warning" /> <!-- "value" parameter unused in property setters -->
+    <Rule Id="S3928" Action="Warning" /> <!-- Parameter names used into ArgumentException constructors should match -->
+    <Rule Id="S907" Action="Warning" />  <!-- "goto" should not be used -->
+    <!-- S4055 excluded: localization literal rule is too noisy for deterministic ErrorMessage strings -->
+  </Rules>
+</RuleSet>

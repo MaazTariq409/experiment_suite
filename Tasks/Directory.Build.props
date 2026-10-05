@@ -1,0 +1,5 @@
+<Project>
+  <!-- Freeze Sonar smell analysis on all Participant implementation projects -->
+  <Import Project="$(MSBuildThisFileDirectory)..\analyzer\Participant.Analyzer.props"
+          Condition="$(MSBuildProjectName.EndsWith('.Participant'))" />
+</Project>
