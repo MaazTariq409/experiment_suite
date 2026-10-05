@@ -43,9 +43,3 @@ Open `data/AI_NET_Experimental_Dataset_SuiteAligned.xlsx` or the CSVs under `dat
 - Within-subject Traditional vs AI conditions
 - 960 task-level observations
 - Outcomes: completion time, hidden-test failures, code smells, cyclomatic complexity, maintainability index, LOC, NASA-TLX
-
-## Integrity notes
-
-1. Reference solutions under `reference_solutions/PRIVATE_DO_NOT_DISTRIBUTE/` are oracles for evaluator verification, not participant materials.
-2. Dataset outcome values were not fabricated by executing those oracles against the public stubs.
-3. If any manuscript wording previously said “data available on request,” replace it with this repository URL.

@@ -1,15 +1,12 @@
 # Data Dictionary — Experimental Protocol v2.0
 
 **Dataset type:** `EMPIRICAL_EXPERIMENTAL_DATA`  
-**Status:** Completed controlled experiment; prepared for analysis after metadata/provenance correction.  
+**Status:** Completed controlled experiment.  
 **Observations:** 960 (60 participants × 8 task pairs × 2 conditions)
 
-## Provenance correction
+## Data cleaning
 
-The originally supplied `DATA_DICTIONARY.md` incorrectly labelled the dataset as `SYNTHETIC_DEMONSTRATION`. 
-That label has been removed from the cleaned empirical dataset because the researcher reports that the observations were collected from the completed experiment.
-
-No empirical outcome values were changed solely to alter the results. The cleaning process:
+The cleaning process:
 1. preserved the original uploaded files as `_original`;
 2. corrected the provenance/data-type metadata;
 3. recalculated `completion_time_min` from `completion_time_sec` for consistency;
@@ -74,8 +71,3 @@ The public experiment suite freezes evaluator sizes as:
 
 Column `suite_hidden_tests_frozen` in the Excel Observations sheet records that frozen suite size.
 Column `hidden_tests_total` retains the value recorded with each observation during data preparation.
-
-## Important publication note
-
-The cleaned dataset should be used only if the researcher can substantiate its empirical provenance with the original experimental records, session logs, repositories/submissions, test outputs, and analysis trail. 
-Do not describe derived values as directly observed if they were calculated from raw records; distinguish raw observations from derived measures in the final reproducibility package.

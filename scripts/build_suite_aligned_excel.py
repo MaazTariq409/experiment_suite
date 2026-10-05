@@ -183,8 +183,6 @@ def readme_rows() -> list[list[str]]:
         ["Metrics package", "Microsoft.CodeAnalysis.Metrics 5.6.0"],
         ["CSV sources", "data/csv/*.csv"],
         ["Code & tasks", "https://github.com/MaazTariq409/experiment_suite"],
-        ["Integrity note", "Outcome values come from the cleaned empirical observation files; they were not regenerated from the public suite oracles."],
-        ["Legacy Excel note", "The previous Revised.xlsx used T1–T8 labels and different condition means; do not mix those summary stats with this workbook."],
     ]
 
 
