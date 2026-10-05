@@ -1,0 +1,17 @@
+task_pair,variant,task_name,pilot_difficulty_rating_1_5,hidden_tests_count,suite_hidden_tests_frozen
+TP01,A,Equipment Maintenance API,2.79,18-24,10
+TP01,B,Supplier Contract API,2.91,18-24,10
+TP02,A,Project Access Policy,3.12,18-24,20
+TP02,B,Document Access Policy,3.18,18-24,20
+TP03,A,Invoice Aging,2.97,18-24,20
+TP03,B,Purchase Order Fulfilment,3.03,18-24,20
+TP04,A,Leave Approval,3.21,18-24,20
+TP04,B,Expense Reimbursement,3.27,18-24,20
+TP05,A,Currency Rate Service,3.33,18-24,20
+TP05,B,Shipping Rate Service,3.39,18-24,20
+TP06,A,Employee Import,2.88,18-24,20
+TP06,B,Product Catalog Import,3.0,18-24,20
+TP07,A,Notification Preferences,3.42,18-24,20
+TP07,B,Alert Subscriptions,3.48,18-24,20
+TP08,A,Resource Utilization,3.24,18-24,20
+TP08,B,Support Ticket SLA,3.36,18-24,20

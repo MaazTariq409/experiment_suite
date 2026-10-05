@@ -1,57 +1,44 @@
 # Enterprise .NET Experiment Suite
 
-Reproducibility package for the controlled crossover study of AI-assisted enterprise-oriented .NET development (TP01–TP08, variants A/B).
+Reproducibility package for a controlled crossover study of AI-assisted enterprise-oriented .NET development (JOCL revision materials).
 
-## What this package proves to reviewers
+**Public repository:** https://github.com/MaazTariq409/experiment_suite
 
-1. Tasks are **not** standalone toy programs. Each variant is completed **inside a supplied enterprise project** with frozen contracts, DTOs, and persistence abstractions.
-2. Participants implement functionality **largely from scratch** in marked service classes (TP07 starts from defective legacy code by design).
-3. Independently written solutions remain testable because evaluation binds only to **frozen interface contracts**, not to participant-specific internal design.
-4. Hidden tests are separated from the participant package.
+## Contents
 
-## Layout
+| Path | Purpose |
+|---|---|
+| `Tasks/TP01`–`TP08` | Frozen contracts, participant packages, hidden evaluators (variants A/B) |
+| `task_specs/` | Participant-facing requirement sheets |
+| `analyzer/` | SonarAnalyzer.CSharp 10.35.0.4138 ruleset + config hash |
+| `data/` | Suite-aligned anonymized dataset (Excel + CSV) |
+| `docs/` | Methodological documentation answering reviewer concerns |
+| `scripts/` | Evaluate / pack / verify / rebuild Excel |
+| `REVIEWER_PACKAGE.md` | Start here for peer review |
 
-```
-experiment_suite/
-  src/Enterprise.Shared/           Shared result/time/security primitives
-  Tasks/TP0x/{A|B}/
-    Contracts/                     FROZEN — interfaces + DTOs
-    Participant/                   What developers edit
-    Evaluation/                    HIDDEN tests (reviewer/repro package)
-  task_specs/                      Participant-facing requirement sheets
-  docs/                            Methodological documentation
-  reference_solutions/PRIVATE_...  Private oracles (not for participants)
-  scripts/                         Packaging and evaluation helpers
-```
+## Study snapshot
 
-## Build
+- Design: counterbalanced within-subject crossover (sequences A–D)
+- N = 60 developers; 8 task pairs; Traditional vs AI
+- 960 observations
+- .NET 8 / C# enterprise-oriented service tasks
+
+## Build and evaluate
 
 ```powershell
 dotnet build EnterpriseTasks.sln
-```
-
-## Evaluate one variant (example TP01-A)
-
-```powershell
 ./scripts/evaluate.ps1 -Task TP01 -Variant A
+./scripts/verify_evaluator_tp02.ps1 -Variant A   # injects private oracle, runs tests, restores stub
 ```
 
-The script runs only the Evaluation project for that variant and prints failed-test counts.
+## Data
 
-## Participant package vs full package
+- Excel: `data/AI_NET_Experimental_Dataset_SuiteAligned.xlsx`
+- CSV: `data/csv/`
+- Dictionary: `data/DATA_DICTIONARY.md`
 
-| Content | Participant zip | Reviewer/repro zip |
-|---|---|---|
-| Contracts + Participant stubs + task specs | Yes | Yes |
-| Evaluation hidden tests | No | Yes |
-| Reference solutions | No | Optional / private |
-| Analyzer config | Manifest only | Full config |
+This workbook supersedes the older flat `T1`–`T8` Excel schema.
 
-Use `./scripts/pack_participant.ps1` to emit participant zips without Evaluation folders.
+## License / use
 
-## Related manuscript claims this package supports
-
-- Enterprise-oriented operationalization
-- Interface-contract based automated correctness
-- Completion rule independent of test pass/fail
-- Matched A/B variants with shared capability, different domain labels
+Intended for peer review and reproducibility of the reported experiment. Do not redistribute reference oracles as participant worksheets for new cohorts without removing `reference_solutions/`.

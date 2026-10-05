@@ -12,7 +12,7 @@ This file maps reviewer concerns to concrete artifacts in `experiment_suite/`.
 | Eight task pairs only listed by category | `task_specs/` + per-variant Contracts/Participant/Evaluation |
 | Static-analysis tool/version/config | `analyzer/` + `docs/05_STATIC_ANALYSIS.md` (SonarAnalyzer.CSharp 10.35.0.4138; Metrics 5.6.0) |
 | A/B equivalence | Matched capability + mirrored validation/error contracts; domain nouns differ |
-| Reproducibility / data availability | Full suite folder intended for reviewer-accessible repository release |
+| Reproducibility / data availability | `data/` Excel+CSV package + this public GitHub repository |
 
 ## Recommended public release layout
 
@@ -36,6 +36,7 @@ This file maps reviewer concerns to concrete artifacts in `experiment_suite/`.
 | Hidden Evaluation harness | **All TP01–TP08 complete** |
 | Reference implementations | TP01–TP08 A/B |
 | Static analyzer freeze | Complete — SonarAnalyzer.CSharp **10.35.0.4138** + Metrics **5.6.0**; hash `c84cde8e4805433f` |
+| Suite-aligned dataset (Excel + CSV) | Complete — `data/AI_NET_Experimental_Dataset_SuiteAligned.xlsx` |
 
 ## Important integrity note
 
