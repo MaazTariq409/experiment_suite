@@ -37,8 +37,6 @@ dotnet build EnterpriseTasks.sln
 - CSV: `data/csv/`
 - Dictionary: `data/DATA_DICTIONARY.md`
 
-This workbook supersedes the older flat `T1`–`T8` Excel schema.
-
 ## License / use
 
 Intended for peer review and reproducibility of the reported experiment. Do not redistribute reference oracles as participant worksheets for new cohorts without removing `reference_solutions/`.
