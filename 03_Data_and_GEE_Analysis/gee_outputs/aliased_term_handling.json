@@ -1,0 +1,4 @@
+{
+  "policy": "If the confirmatory design matrix is rank-deficient, linearly dependent columns are dropped after QR pivoting. Dropped columns are logged as aliased. Condition uses Treatment coding with Traditional as the reference level. Only the main-effect Condition[AI] coefficient is reported as the adjusted AI effect (interaction terms are retained in the model when estimable but are not reported as the AI effect). Sequence is not entered as a separate main effect because Order is derived from Sequence (A/C = Traditional-first; B/D = AI-first).",
+  "note": "For this design, Condition\u00d7Order columns are typically aliased and dropped; the estimable confirmatory specification that reproduces manuscript Table 6 is Condition + Period + TaskPair + Condition\u00d7Period."
+}
